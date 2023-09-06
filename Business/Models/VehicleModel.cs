@@ -9,18 +9,19 @@ namespace Business.Models
 {
 	public class VehicleModel : RecordBase
     {
-        [Required]
-        [StringLength(150)]
-        public double Price { get; set; }
+        [Range(0, double.MaxValue)]
 
-        [Required]
-        [StringLength(10)]
-        public int Year { get; set; }
+		public double Price { get; set; }
+
+
+        	
+		public int Year { get; set; }
 
         public string Description { get; set; }
 
         [DisplayName("Sold")]
         public bool IsSold { get; set; }
+
 
         public int BrandId { get; set; }
 
@@ -30,9 +31,11 @@ namespace Business.Models
 
         public Color Color { get; set; }
 
-        public int ModelId { get; set; }
+		
+		public int ModelId { get; set; }
 
-        public Model Model { get; set; }
+		
+		public Model Model { get; set; }
 
         public int? CustomerId { get; set; }
 
@@ -41,5 +44,10 @@ namespace Business.Models
         [NotMapped]
         [DisplayName("Customer")]
         public string CustomerDisplay { get; set; }
+
+		[NotMapped]
+		
+		[DisplayName("Price")]
+		public string PriceDisplay { get; set; }
     }
 }

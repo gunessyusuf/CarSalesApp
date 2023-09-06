@@ -4,6 +4,8 @@ using AppCore.Results;
 using AppCore.Results.Bases;
 using Business.Models;
 using DataAccess.Entities;
+using System.Globalization;
+using System.Security.Cryptography.Xml;
 
 namespace Business.Services
 {
@@ -23,12 +25,36 @@ namespace Business.Services
 
         public Result Add(VehicleModel model)
         {
-            throw new NotImplementedException();
-        }
+			var entity = new Vehicle()
+			{
+				Id = model.Id,
+				Price = model.Price,
+				Brand = model.Brand,
+				BrandId = model.BrandId,
+				Color = model.Color,
+				ColorId = model.ColorId,
+				Year = model.Year,
+				Customer = model.Customer,
+				CustomerId = model.CustomerId,
+				Description = model.Description,
+				IsSold = model.IsSold,
+				Model = model.Model,
+				ModelId = model.ModelId,
+                
+
+			};           
+
+            _vehicleRepo.Add(entity);
+            return new SuccessResult("Vehicle added succeffully");
+		}
 
         public Result Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = _vehicleRepo.Query().SingleOrDefault(v => v.Id == id);
+
+            _vehicleRepo.Delete(entity);
+
+            return new SuccessResult("Vehicle deleted successfully");
         }
 
         public void Dispose()
@@ -50,10 +76,15 @@ namespace Business.Services
                IsSold = v.IsSold,
                Model = v.Model,
                
-               CustomerDisplay = v.Customer.Name + " " + v.Customer.Surname
+               CustomerDisplay = v.Customer.Name + " " + v.Customer.Surname,
+
+               PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US"))
 
                
+               
             });
+
+            
         }
 
         public Result Update(VehicleModel model)

@@ -23,7 +23,7 @@ namespace DataAccess.Entities
         public List<Vehicle> Vehicles { get; set; }
 
 
-        public string FullName  => $"{Name} {Surname} ";
+       
 
     }
 }

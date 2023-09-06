@@ -8,11 +8,11 @@ namespace DataAccess.Entities
 	public class Vehicle : RecordBase
 	{
 		[Required]
-		[StringLength(150)]
+		
 		public double Price { get; set; }
 
 		[Required]
-		[StringLength(10)]
+		
 		public int Year { get; set; }
 
 		public string Description { get; set; }

@@ -3,12 +3,12 @@
 @*Model namespace using directive should be added to _ViewImports.cshtml.*@
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Vehicle";
 }
 
 <h1>@ViewData["Title"]</h1>
 
-<h4>Vehicle</h4>
+
 <hr />
 <div class="row">
     <div class="col-12">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <label asp-for="BrandId" class="col-2 col-form-label"></label>
+                <label asp-for="Brand" class="col-2 col-form-label"></label>
 				<div class="col-5">
 					<select asp-for="BrandId" class="form-select" asp-items="ViewBag.BrandId">
 						<option value="">-- Select --</option>
@@ -52,7 +52,7 @@
 				</div>
             </div>
             <div class="row mb-3">
-                <label asp-for="ColorId" class="col-2 col-form-label"></label>
+                <label asp-for="Color" class="col-2 col-form-label"></label>
 				<div class="col-5">
 					<select asp-for="ColorId" class="form-select" asp-items="ViewBag.ColorId">
 						<option value="">-- Select --</option>
@@ -61,7 +61,7 @@
 				</div>
             </div>
             <div class="row mb-3">
-                <label asp-for="ModelId" class="col-2 col-form-label"></label>
+                <label asp-for="Model" class="col-2 col-form-label"></label>
 				<div class="col-5">
 					<select asp-for="ModelId" class="form-select" asp-items="ViewBag.ModelId">
 						<option value="">-- Select --</option>
@@ -70,7 +70,7 @@
 				</div>
             </div>
             <div class="row mb-3">
-                <label asp-for="CustomerId" class="col-2 col-form-label"></label>
+                <label asp-for="Customer" class="col-2 col-form-label"></label>
 				<div class="col-5">
 					<select asp-for="CustomerId" class="form-select" asp-items="ViewBag.CustomerId">
 						<option value="">-- Select --</option>
@@ -84,7 +84,7 @@
 					&nbsp;&nbsp;
                     <button type="reset" class="btn btn-outline-primary">Reset</button>
 					&nbsp;&nbsp;
-					<a asp-action="Index">Back to List</a>
+					<a asp-action="Index">Back to Vehicle List</a>
 				</div>
             </div>
         </form>
