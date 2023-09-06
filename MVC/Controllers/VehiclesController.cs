@@ -79,15 +79,8 @@ namespace MVC.Controllers
         public IActionResult Edit(int id)
         {
             VehicleModel vehicle = _vehicleService.Query().SingleOrDefault(v => v.Id == id);
-			//var customers = _customerService.Query().ToList();
-			var customerModel = _customerService.Query().Select(c => new CustomerModel()
-			{
-				Id = c.Id,
-				Name = c.Name,
-				Surname = c.Surname,
-				CarsDisplay = c.CarsDisplay,
-				CustomerDisplay = c.CustomerDisplay,
-			}).ToList();
+			
+			
 
 			if (vehicle == null)
             {
@@ -109,15 +102,7 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(VehicleModel vehicle)
         {
-			//var customers = _customerService.Query().ToList();
-			var customerModel = _customerService.Query().Select(c => new CustomerModel()
-			{
-				Id = c.Id,
-                Name = c.Name,
-                Surname = c.Surname,
-                CarsDisplay = c.CarsDisplay,
-                CustomerDisplay = c.CustomerDisplay,
-			}).ToList();
+			
 
 
 			if (ModelState.IsValid)

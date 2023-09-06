@@ -67,19 +67,22 @@ namespace Business.Services
                 Color = model.Color,
                 ColorId = model.ColorId,
                 Year = model.Year,
-                Customer= model.Customer,
+                Customer = model.Customer,
                 CustomerId = model.CustomerId,
                 Description = model.Description,
-                IsSold= model.IsSold,
+                IsSold = model.IsSold,
                 Model = model.Model,
                 ModelId = model.ModelId,
-                
-                
-                
-            };
-            
 
-			_vehicleRepo.Update(entity);
+
+            };
+
+
+
+
+
+
+            _vehicleRepo.Update(entity);
 
             return new SuccessResult("Vehicle updated successfully!");
         }
