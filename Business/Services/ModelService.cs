@@ -1,5 +1,6 @@
 ﻿using AppCore.Business.Services.Bases;
 using AppCore.DataAccess.EntityFramework.Bases;
+using AppCore.Results;
 using AppCore.Results.Bases;
 using Business.Models;
 using DataAccess.Entities;
@@ -23,12 +24,24 @@ namespace Business.Services
 
 		public Result Add(ModelModel model)
 		{
-			throw new NotImplementedException();
+			var entity = new Model()
+			{
+				Brand = model.Brand,
+				BrandId = model.BrandId,
+				Id = model.Id,
+			    Name = model.Name,
+				
+			};
+
+			_modelRepo.Add(entity);
+			return new SuccessResult("Model Added Successfully");
 		}
 
 		public Result Delete(int id)
 		{
-			throw new NotImplementedException();
+			var entity = _modelRepo.Query().SingleOrDefault(m => m.Id == id);
+			_modelRepo.Delete(entity);
+			return new SuccessResult("Model Deleted Successfully");
 		}
 
 		public void Dispose()
@@ -42,12 +55,24 @@ namespace Business.Services
 			{
 				Id = m.Id,
 				Name = m.Name,
+				BrandId = m.BrandId,
+				Brand = m.Brand,
 			});
 		}
 
 		public Result Update(ModelModel model)
 		{
-			throw new NotImplementedException();
-		}
+            var entity = new Model()
+            {
+                Brand = model.Brand,
+                BrandId = model.BrandId,
+                Id = model.Id,
+                Name = model.Name,
+
+            };
+
+           _modelRepo.Update(entity);
+            return new SuccessResult("Model Updated Successfully");
+        }
 	}
 }

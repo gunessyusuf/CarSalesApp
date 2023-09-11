@@ -2,6 +2,7 @@ using AppCore.DataAccess.EntityFramework.Bases;
 using Business.Services;
 using DataAccess.Contexts;
 using DataAccess.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,9 +21,33 @@ builder.Services.AddScoped<IColorService, ColorService>();
 builder.Services.AddScoped<IBrandService, BrandService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IModelService, ModelService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAccountService, AccountService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+#region Authentication
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    
+
+    .AddCookie(config =>
+    {
+        config.LoginPath = "/Account/Users/Login";
+       
+
+        config.AccessDeniedPath = "/Account/Users/AccessDenied";
+       
+
+        config.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        
+
+        config.SlidingExpiration = true;
+       
+    });
+
+#endregion
 
 var app = builder.Build();
 
@@ -39,7 +64,22 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+#region Authentication
+app.UseAuthentication(); // sen kimsin?
+#endregion
+
+app.UseAuthorization(); // sen iþlem için yetkili misin?
+
+
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
+
 
 app.MapControllerRoute(
     name: "default",

@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using AppCore.Records.Bases;
+using DataAccess.Entities;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,7 +17,13 @@ namespace Business.Models
 		[StringLength(150)]
 		public string Surname { get; set; }
 
-		[NotMapped]
+        public int CustomerDetailId { get; set; }
+
+        public CustomerDetail CustomerDetail { get; set; }
+
+        public string Notes { get; set; }
+
+        [NotMapped]
 		[DisplayName("Cars")]
         public string CarsDisplay { get; set; }
 

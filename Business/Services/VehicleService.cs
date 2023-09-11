@@ -45,7 +45,7 @@ namespace Business.Services
 			};           
 
             _vehicleRepo.Add(entity);
-            return new SuccessResult("Vehicle added succeffully");
+            return new SuccessResult("Vehicle Added Succeffully");
 		}
 
         public Result Delete(int id)
@@ -54,7 +54,7 @@ namespace Business.Services
 
             _vehicleRepo.Delete(entity);
 
-            return new SuccessResult("Vehicle deleted successfully");
+            return new SuccessResult("Vehicle Deleted Successfully");
         }
 
         public void Dispose()
@@ -115,7 +115,7 @@ namespace Business.Services
 
             _vehicleRepo.Update(entity);
 
-            return new SuccessResult("Vehicle updated successfully!");
+            return new SuccessResult("Vehicle Updated Successfully!");
         }
     }
 }

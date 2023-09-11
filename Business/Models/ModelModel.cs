@@ -1,5 +1,6 @@
 ﻿#nullable disable
 using AppCore.Records.Bases;
+using DataAccess.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Business.Models
@@ -9,5 +10,9 @@ namespace Business.Models
 		[Required]
 		[StringLength(150)]
 		public string Name { get; set; }
-	}
+
+        public int BrandId { get; set; }
+
+        public Brand Brand { get; set; }
+    }
 }

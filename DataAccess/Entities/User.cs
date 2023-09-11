@@ -21,7 +21,7 @@ namespace DataAccess.Entities
 
         public int RoleId { get; set; }
 
-        public Role Rol { get; set; }
+        public Role Role { get; set; }
 
         public int UserDetailId { get; set; }
 

@@ -27,8 +27,7 @@ namespace Business.Services
 			{
 				Id = model.Id,
 				Name = model.Name,
-			    Models = model.Models,
-			    Vehicles = model.Vehicles,
+			   
 			};
 
 			_brandRepo.Add(entity);
@@ -67,8 +66,7 @@ namespace Business.Services
             {
                 Id = model.Id,
                 Name = model.Name,
-                Models = model.Models,
-                Vehicles = model.Vehicles,
+
             };
 
             _brandRepo.Update(entity);

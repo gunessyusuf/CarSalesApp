@@ -1,8 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Car-Sales";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Car Sales</h1>
-    <p>Welcome to Car Sales</p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <h1 class="display-4">Car Sales</h1>
+        <p>Welcome to Car Sales</p>
+    }
+    else
+    {
+        <p>
+            Welcome to Car-Sales @User.Identity.Name!
+        </p>
+    }
 </div>

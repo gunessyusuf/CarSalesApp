@@ -13,9 +13,9 @@ namespace Business.Models
 		[StringLength(150)]
 		public string Name { get; set; }
 
-		public List<Model> Models { get; set; }
+		//public List<Model> Models { get; set; }
 
-		public List<Vehicle> Vehicles { get; set; }
+		//public List<Vehicle> Vehicles { get; set; }
 
 
         [NotMapped]
