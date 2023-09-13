@@ -2,13 +2,16 @@
 using AppCore.Results;
 using AppCore.Results.Bases;
 using Business.Models;
+using DataAccess.Enums;
 
 namespace Business.Services
 {
     public interface IAccountService 
     {
         Result Login(AccountLoginModel accountLoginModel, UserModel userResultModel);
-    }
+
+		Result Register(AccountRegisterModel model);
+	}
 
     public class AccountService : IAccountService
     {
@@ -33,5 +36,18 @@ namespace Business.Services
 
             return new SuccessResult();
         }
-    }
+
+		public Result Register(AccountRegisterModel model)
+		{
+			UserModel userModel = new UserModel()
+			{
+				IsActive = true,
+				Password = model.Password,
+				RoleId = (int)Roles.User,
+				UserName = model.UserName
+			};
+
+			return _userService.Add(userModel);
+		}
+	}
 }

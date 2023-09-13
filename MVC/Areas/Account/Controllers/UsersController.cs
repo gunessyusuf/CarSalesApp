@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using AppCore.Results.Bases;
 using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -77,9 +78,27 @@ namespace MVC.Areas.Account.Controllers
 
         public IActionResult AccessDenied()
         {
-            return View("Error", "Access is denied for this page!");
+            return View("_Error", "Access is denied for this page!");
         }
 
-       
+		public IActionResult Register()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public IActionResult Register(AccountRegisterModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				Result result = _accountService.Register(model);
+				if (result.IsSuccessful)
+					return RedirectToAction(nameof(Login));
+				ModelState.AddModelError("", result.Message);
+			}
+			return View(model);
+		}
+
 	}
 }

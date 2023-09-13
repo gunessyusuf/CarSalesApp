@@ -6,11 +6,17 @@
     ViewData["Title"] = "Vehicle List";
 }
 
-<h1>@ViewData["Title"]</h1>
+@if (ViewBag.DeleteMessage is not null)
+{
+	<p class="text-success">@ViewBag.DeleteMessage</p>
+}
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -74,10 +80,16 @@
 						@Html.DisplayFor(modelItem => item.CustomerDisplay)
 					</td>
 					<td>
-						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
-						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>&nbsp;|&nbsp;
+					
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a>
+						
+					@if (User.IsInRole("Admin"))
+					{
+						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+						
 						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					</td>
+					}
+				</td>
 				</tr>
 		}
     </tbody>

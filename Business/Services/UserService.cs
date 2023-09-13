@@ -1,6 +1,7 @@
 ﻿
 using AppCore.Business.Services.Bases;
 using AppCore.DataAccess.EntityFramework.Bases;
+using AppCore.Results;
 using AppCore.Results.Bases;
 using Business.Models;
 using DataAccess.Entities;
@@ -24,7 +25,21 @@ namespace Business.Services
 
         public Result Add(UserModel model)
         {
-            throw new NotImplementedException();
+           List<User> users = _userRepo.GetList();
+            if (users.Any(u => u.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase)))
+                return new ErrorResult("Users with same name exits!");
+
+            User entity = new User()
+            {
+                IsActive = model.IsActive,
+                UserName = model.UserName,
+                RoleId = model.RoleId,
+                Password = model.Password
+            };
+
+            _userRepo.Add(entity);
+
+            return new SuccessResult();
         }
 
         public Result Delete(int id)
