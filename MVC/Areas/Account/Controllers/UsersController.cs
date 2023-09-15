@@ -1,6 +1,7 @@
 ﻿#nullable disable
 using AppCore.Results.Bases;
 using Business.Models;
+using Business.Models.Account;
 using Business.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

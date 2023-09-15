@@ -49,5 +49,22 @@ namespace Business.Models
 		
 		[DisplayName("Price")]
 		public string PriceDisplay { get; set; }
-    }
+
+
+		public int? UserId { get; set; }
+
+
+		#region Binary Data
+		[Column(TypeName = "image")]
+		public byte[] Image { get; set; }
+
+		[StringLength(5)]
+		public string ImageExtension { get; set; }
+
+		[DisplayName("Image")]
+		public string ImgSrcDisplay { get; set; }
+		#endregion
+
+
+	}
 }

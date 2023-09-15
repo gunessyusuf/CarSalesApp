@@ -35,7 +35,13 @@ namespace DataAccess.Entities
 
 		public Customer Customer { get; set; }
 
-		
+		#region Binary Data
+		[Column(TypeName = "image")]
+		public byte[] Image { get; set; }
+
+		[StringLength(5)]
+		public string ImageExtension { get; set; } 
+		#endregion
 
 	}
 }

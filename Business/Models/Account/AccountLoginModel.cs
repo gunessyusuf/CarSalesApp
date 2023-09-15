@@ -3,7 +3,7 @@ using AppCore.Records.Bases;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 
-namespace Business.Models
+namespace Business.Models.Account
 {
     public class AccountLoginModel : RecordBase
     {

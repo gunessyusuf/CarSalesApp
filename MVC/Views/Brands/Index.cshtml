@@ -8,20 +8,36 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-		@foreach (var item in Model) {
+
+@if (TempData["Message"] is not null)
+{
+	<p class="text-success">
+		@TempData["Message"]
+	</p>
+}
+
+@if (Model is not null && Model.Count() > 0)
+{
+	string favoritesCount = Model.Count() == 1 ? "1 brand found." : Model.Count() + " brands found.";
+	<p class="bg-secondary form-control-plaintext">
+		@favoritesCount
+	</p>
+
+	<p>
+		<a asp-action="Create">Create New</a>
+	</p>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.Name)
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
 				<tr>
 					<td>
 						@Html.DisplayFor(modelItem => item.Name)
@@ -32,9 +48,10 @@
 						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
 					</td>
 				</tr>
-		}
-    </tbody>
-</table>
+			}
+		</tbody>
+	</table>
+}
 
 
 

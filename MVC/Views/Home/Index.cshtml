@@ -1,17 +1,17 @@
 ﻿@{
-    ViewData["Title"] = "Car-Sales";
+    ViewData["Title"] = @AppSettings.Title;
 }
 
 <div class="text-center">
     @if (!User.Identity.IsAuthenticated)
     {
         <h1 class="display-4">Car Sales</h1>
-        <p>Welcome to Car Sales</p>
+        <p>Welcome to @AppSettings.Title</p>
     }
     else
     {
         <p>
-            Welcome to Car-Sales @User.Identity.Name!
+            Welcome to @AppSettings.Title @User.Identity.Name!
         </p>
     }
 </div>

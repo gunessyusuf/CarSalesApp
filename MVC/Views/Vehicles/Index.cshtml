@@ -6,94 +6,121 @@
     ViewData["Title"] = "Vehicle List";
 }
 
-@if (ViewBag.DeleteMessage is not null)
+@if (TempData["Message"] is not null)
 {
-	<p class="text-success">@ViewBag.DeleteMessage</p>
-}
-
-@if (User.IsInRole("Admin"))
-{
-	<p>
-		<a asp-action="Create">Create New</a>
+	<p class="text-success">
+		@TempData["Message"]
 	</p>
 }
-<table class="table">
-    <thead>
-        <tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Brand)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Model)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Year)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Color)
-			</th>
-            <th>
-                @Html.DisplayNameFor(model => model.PriceDisplay)
-            </th>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSold)
-            </th>        
-                       
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerDisplay)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-		@foreach (var item in Model) {
+
+@if (Model is not null && Model.Count() > 0)
+{
+	string favoritesCount = Model.Count() == 1 ? "1 vehicle found." : Model.Count() + " vehicles found.";
+	<p class="bg-secondary form-control-plaintext">
+		@favoritesCount
+	</p>
+
+	@if (User.IsInRole("Admin"))
+	{
+		<p>
+			<a asp-action="Create">Create New</a>
+		</p>
+	}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.ImgSrcDisplay)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Brand)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Model)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Year)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Color)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.PriceDisplay)
+				</th>
+
+				<th>
+					@Html.DisplayNameFor(model => model.Description)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IsSold)
+				</th>        
+
+				<th>
+					@Html.DisplayNameFor(model => model.CustomerDisplay)
+				</th>
+
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
 				<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Brand.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Model.Name)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Year)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Color.Name)
-				</td>
+					<td>
+						@if (item.ImgSrcDisplay is not null)
+						{
+							<img src="@item.ImgSrcDisplay" class="img-thumbnail" />
+						}
+						else
+						{
+							<i class="fa-regular fa-image" title="No Image"></i>
+						}
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Brand.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Model.Name)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Year)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Color.Name)
+					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.PriceDisplay)
 					</td>
-					
+
 					<td>
 						@Html.DisplayFor(modelItem => item.Description)
 					</td>
 					<td>
 						@Html.DisplayFor(modelItem => item.IsSold)
 					</td>
-									
-				
+
+
 					<td>
 						@Html.DisplayFor(modelItem => item.CustomerDisplay)
 					</td>
 					<td>
-					
-						<a asp-action="Details" asp-route-id="@item.Id">Details</a>
-						
-					@if (User.IsInRole("Admin"))
-					{
-						<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-						
-						<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-					}
-				</td>
+
+						<a asp-action="AddToFavorites" asp-controller="Favorites" asp-route-vehicleId="@item.Id">Add to Favorites</a> &nbsp;|&nbsp;
+						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
+
+						@if (User.IsInRole("Admin"))
+						{
+							<a asp-action="Edit" asp-route-id="@item.Id">Edit</a>@:&nbsp;| &nbsp;
+							
+
+							<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+						}
+					</td>
 				</tr>
-		}
-    </tbody>
-</table>
+			}
+		</tbody>
+	</table>
+}
 
 
 

@@ -25,6 +25,10 @@ namespace Business.Services
 
         public Result Add(VehicleModel model)
         {
+			//if (_vehicleRepo.Exists(v => v.Model.Name.ToLower() == model.Model.Name.ToLower() && v.Brand.Name.ToLower() == model.Brand.Name.ToLower().Trim()))
+			//{
+			//	return new ErrorResult("Vehicle is exists!");
+			//}
 			var entity = new Vehicle()
 			{
 				Id = model.Id,
@@ -40,7 +44,9 @@ namespace Business.Services
 				IsSold = model.IsSold,
 				Model = model.Model,
 				ModelId = model.ModelId,
-                
+
+				Image = model.Image,
+				ImageExtension = model.ImageExtension
 
 			};           
 
@@ -78,42 +84,54 @@ namespace Business.Services
                
                CustomerDisplay = v.Customer.Name + " " + v.Customer.Surname,
 
-               PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US"))
+               PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US")),
 
-               
-               
-            });
+
+			   ImageExtension = v.ImageExtension,
+
+			   ImgSrcDisplay = v.Image != null ?
+					(
+						v.ImageExtension == ".jpg" || v.ImageExtension == ".jpeg" ?
+						"data:image/jpeg;base64,"
+						: "data:image/png;base64,"
+					) + Convert.ToBase64String(v.Image)
+					: null
+
+		   });
 
             
         }
 
         public Result Update(VehicleModel model)
         {
-            var entity = new Vehicle()
-            {
-                Id = model.Id,
-                Price = model.Price,
-                Brand = model.Brand,
-                BrandId = model.BrandId,
-                Color = model.Color,
-                ColorId = model.ColorId,
-                Year = model.Year,
-                Customer = model.Customer,
-                CustomerId = model.CustomerId,
-                Description = model.Description,
-                IsSold = model.IsSold,
-                Model = model.Model,
-                ModelId = model.ModelId,
+			//if (_vehicleRepo.Exists(v => v.Model.Name.ToLower() == model.Model.Name.ToLower() && v.Brand.Name.ToLower() == model.Brand.Name.ToLower().Trim() && v.Id != model.Id))
+			//{
+			//	return new ErrorResult("Vehicle is exists!");
+			//}
 
+			var entity = _vehicleRepo.Query().SingleOrDefault(b => b.Id == model.Id);
+            
 
-            };
+            entity.Price = model.Price;
+            entity.Brand = model.Brand;
+            entity.BrandId = model.BrandId;
+            entity.Color = model.Color;
+            entity.ColorId = model.ColorId;
+            entity.Year = model.Year;
+            entity.Customer = model.Customer;
+            entity.CustomerId = model.CustomerId;
+            entity.Description = model.Description;
+            entity.IsSold = model.IsSold;
+            entity.Model = model.Model;
+            entity.ModelId = model.ModelId;
+            
 
-
-
-
-
-
-            _vehicleRepo.Update(entity);
+			if (model.Image is not null)
+			{
+				entity.Image = model.Image;
+				entity.ImageExtension = model.ImageExtension;
+			}
+			_vehicleRepo.Update(entity);
 
             return new SuccessResult("Vehicle Updated Successfully!");
         }

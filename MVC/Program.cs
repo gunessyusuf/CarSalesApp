@@ -4,6 +4,7 @@ using DataAccess.Contexts;
 using DataAccess.Repositories;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using MVC.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +50,14 @@ builder.Services
 
 #endregion
 
+#region Session
+builder.Services.AddSession(config =>
+{
+	config.IdleTimeout = TimeSpan.FromMinutes(30);
+	config.IOTimeout = Timeout.InfiniteTimeSpan;
+});
+#endregion
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -70,6 +79,15 @@ app.UseAuthentication(); // sen kimsin?
 
 app.UseAuthorization(); // sen iþlem için yetkili misin?
 
+#region Session
+app.UseSession();
+#endregion
+
+#region AppSettings
+//var section = builder.Configuration.GetSection("AppSettings");
+var section = builder.Configuration.GetSection(nameof(AppSettings));
+section.Bind(new AppSettings());
+# endregion
 
 
 app.UseEndpoints(endpoints =>
