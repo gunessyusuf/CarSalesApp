@@ -19,7 +19,7 @@ namespace Business.Models
 
         public string Description { get; set; }
 
-        [DisplayName("Sold")]
+        
         public bool IsSold { get; set; }
 
 
@@ -50,8 +50,11 @@ namespace Business.Models
 		[DisplayName("Price")]
 		public string PriceDisplay { get; set; }
 
+		[NotMapped]
+        [DisplayName("Sold")]
+        public string SoldDisplay { get; set; }
 
-		public int? UserId { get; set; }
+        public int? UserId { get; set; }
 
 
 		#region Binary Data

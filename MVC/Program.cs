@@ -24,6 +24,8 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IModelService, ModelService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IReportService, ReportService>();
+builder.Services.AddScoped<ISaleService, SaleService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

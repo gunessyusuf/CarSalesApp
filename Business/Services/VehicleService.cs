@@ -86,6 +86,7 @@ namespace Business.Services
 
                PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US")),
 
+               SoldDisplay = v.IsSold ? "Yes" : "No",
 
 			   ImageExtension = v.ImageExtension,
 
