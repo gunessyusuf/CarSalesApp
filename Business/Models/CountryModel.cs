@@ -1,19 +1,16 @@
 ﻿#nullable disable
 using AppCore.Records.Bases;
 using DataAccess.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Business.Models
 {
     public class CountryModel : RecordBase
     {
-        [Required]
-        [StringLength(100)]
+        [Required(ErrorMessage = "{0} is required!")]
+        [StringLength(100, ErrorMessage = "{0} must be maximum {1} characters!")]
+        [DisplayName("Country Name")]
         public string Name { get; set; }
-
-        public List<City> Cities { get; set; }
-
-        public List<UserDetail> UserDetails { get; set; }
-        public List<CustomerDetail> CustomersDetails { get; set; }
     }
 }

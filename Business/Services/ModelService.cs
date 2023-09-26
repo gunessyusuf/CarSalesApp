@@ -24,6 +24,10 @@ namespace Business.Services
 
 		public Result Add(ModelModel model)
 		{
+			if (_modelRepo.Exists(m => m.Name.ToLower() == model.Name.ToLower() && m.BrandId == model.BrandId))
+			{
+				return new ErrorResult("Model is exists.");
+			}
 			var entity = new Model()
 			{
 				Brand = model.Brand,
@@ -62,6 +66,11 @@ namespace Business.Services
 
 		public Result Update(ModelModel model)
 		{
+            if (_modelRepo.Exists(m => m.Name.ToLower() == model.Name.ToLower() && m.BrandId == model.BrandId && m.Id != model.Id))
+            {
+                return new ErrorResult("Model is exists.");
+            }
+
             var entity = new Model()
             {
                 Brand = model.Brand,

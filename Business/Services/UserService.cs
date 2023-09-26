@@ -25,7 +25,7 @@ namespace Business.Services
 
         public Result Add(UserModel model)
         {
-           List<User> users = _userRepo.GetList();
+            List<User> users = _userRepo.GetList();
             if (users.Any(u => u.UserName.Equals(model.UserName, StringComparison.OrdinalIgnoreCase)))
                 return new ErrorResult("Users with same name exits!");
 

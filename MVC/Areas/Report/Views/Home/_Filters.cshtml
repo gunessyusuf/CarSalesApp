@@ -1,0 +1,50 @@
+﻿@model HomeIndexViewModel
+
+<form asp-action="Index" data-ajax="true" data-ajax-update="#report" data-ajax-mode="replace" id="form">
+    <div class="row mb-3">
+
+
+        @* <div class="col-1">
+        @Html.DisplayNameFor(model => model.Filter.BrandId)
+        </div>
+        <div class="col-3">
+        @Html.DropDownListFor(model => model.Filter.BrandId, Model.BrandSelectList, "-- All Brands --", new { @class = "form-select select2", id = "brands" })
+        </div> *@
+
+
+        <div class="col-1">
+            @Html.DisplayNameFor(model => model.Filter.YearBegin)
+        </div>
+        <div class="col-3">
+            <div class="input-group">
+              
+                @Html.TextBoxFor(model => model.Filter.YearBegin, new { @class = "form-control textbox", placeholder = "Min Year" })
+                <span class="input-group-text">-</span>
+                @Html.TextBoxFor(model => model.Filter.YearEnd, new { @class = "form-control textbox", placeholder = "Max Year" })
+            </div>
+            
+        </div>
+        &nbsp;&nbsp;
+        <div class="col-1">
+            @Html.DisplayNameFor(model => model.Filter.PriceBegin)
+        </div>
+        <div class="col-3">
+            <div class="input-group">
+                @Html.TextBoxFor(model => model.Filter.PriceBegin, new { @class = "form-control textbox", placeholder = "Min Price" })
+                <span class="input-group-text">-</span>
+                @Html.TextBoxFor(model => model.Filter.PriceEnd, new { @class = "form-control textbox", placeholder = "Max Price"  })
+            </div>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="offset-1 col-11">
+            <button type="submit" class="btn btn-success">Search</button>
+            &nbsp;&nbsp;
+            @* @Html.ActionLink("Clear", "Index", "Home", null, new { @class = "btn btn-warning", id = "clear" }) *@
+            <a herf="" class="btn btn-warning" id="clear">Clear</a>
+        </div>
+    </div>
+    &nbsp;&nbsp;
+</form>

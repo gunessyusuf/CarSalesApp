@@ -5,7 +5,9 @@ namespace Business.Models.Report
 {
     public class ReportItemModel
     {
-        [DisplayName("Vehicle Brand")]
+        [DisplayName("Brand")]
+        public int BrandId { get; set; }
+
         public string VehicleBrand { get; set; }
 
         [DisplayName("Vehicle Model")]
@@ -15,10 +17,10 @@ namespace Business.Models.Report
         public string VehicleColor { get; set; }
 
         [DisplayName("Vehicle Price")]
-        public string VehiclePrice { get; set; }
+        public double? VehiclePrice { get; set; }
 
         [DisplayName("Vehicle Year")]
-        public int VehicleYear { get; set; }
+        public int? VehicleYear { get; set; }
 
         [DisplayName("Sold")]
         public string IsSold { get; set; }

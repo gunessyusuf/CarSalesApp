@@ -155,7 +155,7 @@ namespace MVC.Controllers
 
 			if (vehicle == null)
 			{
-				return View("Error", "Vehicle not found!");
+				return View("_Error", "Vehicle not found!");
 			}
 			// Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
 			ViewData["BrandId"] = new SelectList(_brandService.Query().ToList(), "Id", "Name", vehicle.BrandId);
@@ -167,8 +167,7 @@ namespace MVC.Controllers
 		}
 
 		// POST: Vehicles/Edit
-		// To protect from overposting attacks, enable the specific properties you want to bind to.
-		// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+		
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Edit(VehicleModel vehicle, IFormFile image)
@@ -181,6 +180,10 @@ namespace MVC.Controllers
 				if (vehicle.Year > DateTime.Now.Year)
 				{
 					ModelState.AddModelError("Year", "Year must be smaller than the current year.");
+				}
+				if (vehicle.Year < 1980)
+				{
+					ModelState.AddModelError("Year", "Year must bu bigger than 1980");
 				}
 
 				Result result = UpdateImage(vehicle, image);
@@ -215,7 +218,7 @@ namespace MVC.Controllers
 			VehicleModel vehicle = _vehicleService.Query().SingleOrDefault(v => v.Id == id);
 			if (vehicle == null)
 			{
-				return View("Error", "Vehicle not found!");
+				return View("_Error", "Vehicle not found!");
 			}
 			return View(vehicle);
 		}

@@ -7,12 +7,12 @@ using DataAccess.Enums;
 
 namespace Business.Services
 {
-    public interface IAccountService 
+    public interface IAccountService
     {
         Result Login(AccountLoginModel accountLoginModel, UserModel userResultModel);
 
-		Result Register(AccountRegisterModel model);
-	}
+        Result Register(AccountRegisterModel model);
+    }
 
     public class AccountService : IAccountService
     {
@@ -25,7 +25,7 @@ namespace Business.Services
 
         public Result Login(AccountLoginModel accountLoginModel, UserModel userResultModel)
         {
-           var user = _userService.Query().SingleOrDefault(u => u.UserName == accountLoginModel.UserName && u.Password == accountLoginModel.Password && u.IsActive);
+            var user = _userService.Query().SingleOrDefault(u => u.UserName == accountLoginModel.UserName && u.Password == accountLoginModel.Password && u.IsActive);
 
             if (user == null)
             {
@@ -38,17 +38,17 @@ namespace Business.Services
             return new SuccessResult();
         }
 
-		public Result Register(AccountRegisterModel model)
-		{
-			UserModel userModel = new UserModel()
-			{
-				IsActive = true,
-				Password = model.Password,
-				RoleId = (int)Roles.User,
-				UserName = model.UserName
-			};
+        public Result Register(AccountRegisterModel model)
+        {
+            UserModel userModel = new UserModel()
+            {
+                IsActive = true,
+                Password = model.Password,
+                RoleId = (int)Roles.User,
+                UserName = model.UserName
+            };
 
-			return _userService.Add(userModel);
-		}
-	}
+            return _userService.Add(userModel);
+        }
+    }
 }

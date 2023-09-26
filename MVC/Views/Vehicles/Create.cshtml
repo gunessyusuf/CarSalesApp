@@ -11,6 +11,7 @@
 
 
 <hr />
+<span class="text-danger"><h4>Please fill all required fields marked with *</h4></span>
 <div class="row">
     <div class="col-12">
 
@@ -18,69 +19,69 @@
 		@Html.AntiForgeryToken()
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row mb-3">
-                <label asp-for="Price" class="col-2 col-form-label"></label>
+				<label asp-for="Price" class="col-2 col-form-label">Price<span class="text-danger"> *</span></label>
 				<div class="col-5">
 					<input asp-for="Price" class="form-control" />
 					<span asp-validation-for="Price" class="text-danger"></span>
 				</div>
             </div>
             <div class="row mb-3">
-                <label asp-for="Year" class="col-2 col-form-label"></label>
+				<label asp-for="Year" class="col-2 col-form-label">Year<span class="text-danger"> *</span></label>
 				<div class="col-5">
 					<input asp-for="Year" class="form-control" />
 					<span asp-validation-for="Year" class="text-danger"></span>
 				</div>
             </div>
-            <div class="row mb-3">
-                <label asp-for="Description" class="col-2 col-form-label"></label>
+			<div class="row mb-3">
+				<label asp-for="Description" class="col-2 col-form-label"></label>
 				<div class="col-5">
 					<input asp-for="Description" class="form-control" />
 					<span asp-validation-for="Description" class="text-danger"></span>
 				</div>
-            </div>
+			</div>
             <div class="row mb-3">
-				<label asp-for="IsSold" class="col-2 col-form-label"></label>
+				<label asp-for="IsSold" class="col-2 col-form-label">IsSold<span class="text-danger"> *</span></label>
 				<div class="col-5" style="padding-top: 7px;">
 					<input class="form-check-input" asp-for="IsSold" />
                 </div>
             </div>
-            <div class="row mb-3">
-                <label asp-for="Brand" class="col-2 col-form-label"></label>
+			<div class="row mb-3">
+				<label asp-for="Brand" class="col-2 col-form-label ">Brand<span class="text-danger"> *</span></label>
 				<div class="col-5">
 					<select asp-for="BrandId" class="form-select" asp-items="ViewBag.BrandId">
 						<option value="">-- Select --</option>
 					</select>
 					<span asp-validation-for="BrandId" class="text-danger"></span>
 				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="Color" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<select asp-for="ColorId" class="form-select" asp-items="ViewBag.ColorId">
-						<option value="">-- Select --</option>
-					</select>
-					<span asp-validation-for="ColorId" class="text-danger"></span>
 				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="Model" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<select asp-for="ModelId" class="form-select" asp-items="ViewBag.ModelId">
-						<option value="">-- Select --</option>
-					</select>
-					<span asp-validation-for="ModelId" class="text-danger"></span>
+				<div class="row mb-3">
+					<label asp-for="Color" class="col-2 col-form-label">Color<span class="text-danger"> *</span></label>
+					<div class="col-5">
+						<select asp-for="ColorId" class="form-select" asp-items="ViewBag.ColorId">
+							<option value="">-- Select --</option>
+						</select>
+						<span asp-validation-for="ColorId" class="text-danger"></span>
+					</div>
 				</div>
-            </div>
-            <div class="row mb-3">
-                <label asp-for="Customer" class="col-2 col-form-label"></label>
-				<div class="col-5">
-					<select asp-for="CustomerId" class="form-select" asp-items="ViewBag.CustomerId">
-						<option value="">-- Select --</option>
-					</select>
-					<span asp-validation-for="CustomerId" class="text-danger"></span>
+				<div class="row mb-3">
+					<label asp-for="Model" class="col-2 col-form-label">Model<span class="text-danger"> *</span></label>
+					<div class="col-5">
+						<select asp-for="ModelId" class="form-select" asp-items="ViewBag.ModelId">
+							<option value="">-- Select --</option>
+						</select>
+						<span asp-validation-for="ModelId" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<label asp-for="Customer" class="col-2 col-form-label"></label>
+					<div class="col-5">
+						<select asp-for="CustomerId" class="form-select" asp-items="ViewBag.CustomerId">
+							<option value="">-- Select --</option>
 
+						</select>
+						<span asp-validation-for="CustomerId" class="text-danger"></span>
+					</div>
 				</div>
-            </div>
 
 			<div class="row mb-3">
 				<label asp-for="Image" class="col-4 col-form-label"></label>

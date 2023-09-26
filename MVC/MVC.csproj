@@ -9,12 +9,16 @@
   <ItemGroup>
     <Compile Remove="Areas\Account\Data\**" />
     <Compile Remove="Areas\Account\Models\**" />
+    <Compile Remove="Templates\**" />
     <Content Remove="Areas\Account\Data\**" />
     <Content Remove="Areas\Account\Models\**" />
+    <Content Remove="Templates\**" />
     <EmbeddedResource Remove="Areas\Account\Data\**" />
     <EmbeddedResource Remove="Areas\Account\Models\**" />
+    <EmbeddedResource Remove="Templates\**" />
     <None Remove="Areas\Account\Data\**" />
     <None Remove="Areas\Account\Models\**" />
+    <None Remove="Templates\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,9 +45,13 @@
 
   <ItemGroup>
     <Folder Include="Areas\Report\Data\" />
-    <Folder Include="Areas\Report\Models\" />
     <Folder Include="Areas\Sale\Data\" />
     <Folder Include="Areas\Sale\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\Audi A3 Sedan 35 TFSI Dynamic.jpg" />
+    <None Include="wwwroot\Images\background-car.jpg" />
   </ItemGroup>
 
 </Project>

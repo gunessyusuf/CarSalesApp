@@ -18,7 +18,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fa-solid fa-house-chimney"></i> Home</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><i class="fas fa-car"></i> Car Sales</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,20 +27,22 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index">Vehicles</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index"><i class="fas fa-car"></i> Vehicles</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Models" asp-action="Index">Models</a>
-                        </li>
+                       
 
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-action="GetFavorites" asp-controller="Favorites">Favorites</a></li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-action="GetFavorites" asp-controller="Favorites"> <i class="fas fa-heart"></i> Favorites</a></li>
                         @if(User.IsInRole("Admin"))
                         {
-                            <li class="nav-item"><a class="nav-link text-dark" asp-area="Sale" asp-action="Index" asp-controller="Home">Sales</a></li>
-                        <li class="nav-item"><a class="nav-link text-dark" asp-area="Report" asp-action="Index" asp-controller="Home">Report</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index">Brands</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Models" asp-action="Index">Models</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Customers"> <i class="fas fa-users"></i> Customers</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="Sale" asp-action="Index" asp-controller="Home"><i class="fas fa-shopping-cart"></i> Sales</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="Report" asp-action="Index" asp-controller="Home"> <i class="fas fa-chart-bar"></i> Report</a></li>
                         }
                     </ul>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -47,14 +50,14 @@
 
                             @if (!User.Identity.IsAuthenticated)
                             {
-                                <a asp-action="Login" asp-controller="Users" asp-area="Account" class="navbar-brand">Login</a>
-                                <a asp-action="Register" asp-controller="Users" asp-area="Account" class="navbar-brand">Register</a>
+                                <a asp-action="Login" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a asp-action="Register" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-user-plus"></i> Register</a>
                             }
                             else
                             {
-                                <a asp-action="Logout" asp-controller="Users" asp-area="Account" class="navbar-brand">Logout</a>
-                               
-                                <span class="navbar-brand">@User.Identity.Name</span>
+                                <a asp-action="Logout" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
+                                <span class="navbar-brand"> <i class="fas fa-user"></i> @User.Identity.Name</span>
                             }
 
                         </ul>
@@ -63,6 +66,9 @@
             </div>
         </nav>
     </header>
+   
+
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -71,14 +77,14 @@
 
 
 
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> *@
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
-</html>
+</html> 
+
+
+
+

@@ -31,26 +31,38 @@ namespace MVC.Controllers
             var colors = _db.Colors.ToList();
             _db.Colors.RemoveRange(colors);
 
+			var users1 = _db.Users.ToList();
+			foreach (var user in users1)
+			{
+				user.UserDetailId = -1; // Kullanıcının UserDetail referansını kaldırın
+			}
+			
+
+			var userDetails = _db.UserDetails.ToList();
+            _db.UserDetails.RemoveRange(userDetails);
+
             var users = _db.Users.ToList();
             _db.Users.RemoveRange(users);
 
-            var roles = _db.Roles.ToList();
-            _db.Roles.RemoveRange(roles);
+           
 
-            if (roles.Count > 0) // eğer veritabanında rol kaydı varsa eklenecek rollerin rol id'lerini aşağıdaki SQL komutu üzerinden 1'den başlayacak hale getiriyoruz
-                                 // eğer kayıt yoksa o zaman zaten rol tablosuna daha önce veri eklenmemiştir dolayısıyla rol id'leri 1'den başlayacaktır
-            {
-                _db.Database.ExecuteSqlRaw("dbcc CHECKIDENT ('Roles', RESEED, 0)"); // ExecuteSqlRaw methodu üzerinden istenilen SQL sorgusu elle yazılıp veritabanında çalıştırılabilir
-            }
-
-            var userDetails = _db.UserDetails.ToList();
-            _db.UserDetails.RemoveRange(userDetails);
+            var customerDetails = _db.CustomerDetails.ToList();
+            _db.CustomerDetails.RemoveRange(customerDetails);
 
             var customers = _db.Customers.ToList();
             _db.Customers.RemoveRange(customers);
 
-            var customerDetails = _db.CustomerDetails.ToList();
-            _db.CustomerDetails.RemoveRange(customerDetails);
+            var roles = _db.Roles.ToList();
+            _db.Roles.RemoveRange(roles);
+
+            if (roles.Count > 0) 
+            {
+                _db.Database.ExecuteSqlRaw("dbcc CHECKIDENT ('Roles', RESEED, 0)"); 
+            }
+
+            
+
+           
 
             var cities = _db.Cities.ToList();
             _db.Cities.RemoveRange(cities);
@@ -144,6 +156,21 @@ namespace MVC.Controllers
                 }
             };
 
+            var azerbaycan = new Country()
+            {
+                Name = "Azerbaycan",
+                Cities = new List<City>()
+                {
+                    new City()
+                    {
+                        Name = "Bakü"
+                    },
+                    new City()
+                    {
+                        Name = "Nahçıvan"
+                    }
+                }
+            };
             _db.Countries.Add(turkey);
 
             _db.SaveChanges();

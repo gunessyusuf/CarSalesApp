@@ -1,13 +1,10 @@
 ﻿#nullable disable
 using AppCore.Records.Bases;
-using DataAccess.Enums;
-using Microsoft.SqlServer.Server;
 using System.ComponentModel.DataAnnotations;
-using System.Security.Principal;
 
 namespace DataAccess.Entities
 {
-	public class User : RecordBase
+    public class User : RecordBase
 	{
 		[Required]
 		[StringLength(15)]
@@ -23,8 +20,8 @@ namespace DataAccess.Entities
 
         public Role Role { get; set; }
 
-        public int UserDetailId { get; set; }
+		public int? UserDetailId { get; set; }
 
-        public UserDetail UserDetail { get; set; }
+		public UserDetail UserDetail { get; set; }
     }
 }

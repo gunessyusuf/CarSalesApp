@@ -9,7 +9,7 @@
 @if (Model != null && Model.Count() > 0)
 {
     string recordCount = Model.Count() == 1 ? "1 record found" : Model.Count() + " records found.";
-    <p class="text-primary">
+    <p class="bg-secondary form-control-plaintext">
         @recordCount
     </p>
     <table class="table">

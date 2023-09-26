@@ -1,4 +1,5 @@
 ﻿#nullable disable
+using AppCore.Results.Bases;
 using Business.Models;
 using Business.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -36,7 +37,7 @@ namespace MVC.Controllers
             ModelModel model = _modelService.Query().SingleOrDefault(m => m.Id == id);
             if (model == null)
             {
-                return View("Error", "Model not found!");
+                return View("_Error", "Model not found!");
             }
             return View(model);
         }
@@ -61,12 +62,17 @@ namespace MVC.Controllers
                 var result = _modelService.Add(model);
                 if (result.IsSuccessful)
                 {
+                    TempData["Message"] = result.Message;
                     return RedirectToAction(nameof(Index));
                 }
-               
-            }
-            // Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
-            ViewData["BrandId"] = new SelectList(_brandService.Query().ToList(), "Id", "Name", model.BrandId);
+
+				ModelState.AddModelError("", result.Message);
+
+			}
+
+			
+			// Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
+			ViewData["BrandId"] = new SelectList(_brandService.Query().ToList(), "Id", "Name", model.BrandId);
             return View(model);
         }
 
@@ -84,8 +90,7 @@ namespace MVC.Controllers
         }
 
         // POST: Models/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(ModelModel model)
@@ -93,11 +98,13 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 var result = _modelService.Update(model);
-                if (result.IsSuccessful)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-            }
+				if (result.IsSuccessful)
+				{
+					TempData["Message"] = result.Message;
+					return RedirectToAction(nameof(Index));
+				}
+				ModelState.AddModelError("", result.Message);
+			}
             // Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
             ViewData["BrandId"] = new SelectList(_brandService.Query().ToList(), "Id", "Name", model.BrandId);
             return View(model);

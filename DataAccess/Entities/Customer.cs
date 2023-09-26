@@ -14,16 +14,13 @@ namespace DataAccess.Entities
         [Required]
         [StringLength(150)]
         public string Surname { get; set; }
-        public int CustomerDetailId { get; set; }
+        public int? CustomerDetailId { get; set; }
 
 		public CustomerDetail CustomerDetail { get; set; }
 
 		public string Notes { get; set; }
 
-        public List<Vehicle> Vehicles { get; set; }
-
-
-       
+        public List<Vehicle> Vehicles { get; set; }       
 
     }
 }

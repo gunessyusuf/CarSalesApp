@@ -1,12 +1,10 @@
 ﻿#nullable disable
-using AppCore.Records.Bases;
 using DataAccess.Enums;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.Metrics;
 
 namespace DataAccess.Entities
 {
-	public class UserDetail : RecordBase
+    public class UserDetail
 	{
 		[Key]
 		public int UserId { get; set; } 

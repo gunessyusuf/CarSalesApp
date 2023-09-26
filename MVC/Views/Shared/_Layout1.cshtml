@@ -1,0 +1,193 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @AppSettings.Title</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    
+
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MVC.styles.css" asp-append-version="true" />
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS (Popper.js dahil) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
+</head >
+
+<body >  
+
+    <div class="top-menu">
+        <div class="container">
+            <div class="right-menu">
+                <a href="#"><i class="fas fa-phone"></i> 0 (212) 456 7890</a>
+                <a href="#" id="showAboutUs">About Us</a>
+                <a href="#" id="showContact">Contact</a>
+            </div>
+        </div>
+    </div>  
+    
+    <!---->
+   
+
+    <!---->
+
+
+    <header>
+
+        <nav class="navbar navbar-expand-lg navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
+
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="/Images/autopro.png" alt="AutoPro Logo" class="autoPro-logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a id="carsLink" class="nav-link text-dark" asp-area="" asp-controller="Vehicles" asp-action="Index"><i class="fas fa-car"></i>Cars</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-action="GetFavorites" asp-controller="Favorites"><i class="fas fa-heart"></i> Favorites</a></li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Brands" asp-action="Index"><i class="fas fa-building"></i> Brands</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Models" asp-action="Index"><i class="fas fa-cube"></i> Models</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="" asp-action="Index" asp-controller="Customers"><i class="fas fa-users"></i> Customers</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="Sale" asp-action="Index" asp-controller="Home"><i class="fas fa-shopping-cart"></i> Sales</a></li>
+                            <li class="nav-item"><a class="nav-link text-dark" asp-area="Report" asp-action="Index" asp-controller="Home"><i class="fas fa-chart-bar"></i> Report</a></li>
+                        }
+                    </ul>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="Login" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-sign-in-alt"></i> Login</a>
+                                <a asp-action="Register" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-user-plus"></i> Register</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Logout" asp-controller="Users" asp-area="Account" class="navbar-brand"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                <span class="navbar-brand"><i class="fas fa-user"></i> @User.Identity.Name</span>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+  
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+   
+
+
+    <section id="about-us">
+       
+        <h3>About Us</h3>
+        <h4> <p>AutoPro is your premier destination for all things automotive. Our mission is to provide a seamless and enjoyable car-selling experience for enthusiasts and everyday drivers alike. With a passion for quality, reliability, and innovation, we've created a platform that  making the process easy, secure, and efficient.</p></h4>
+
+
+     @*    <img src="/Images/Audi A3 Sedan 35 TFSI Dynamic.jpg" alt="About Us Image" class="logo-img"> *@
+    </section>
+
+    <section id="contact">
+        <h3>Contact Us</h3>
+        
+        <p>If you have any questions or would like to get in touch with us, please use the contact information below:</p>
+        
+        <ul>
+            <li><strong>E-mail:</strong> yusuf.gunss20@gmail.com</li>
+            <li><strong>Phone:</strong> 0 (212) 456 7890</li>
+            <li><strong>Address:</strong> Kasımpaşa Mahallesi, Esenler, İstanbul</li>
+        </ul>
+        @* <img src="/Images/Audi A3 Sedan 35 TFSI Dynamic.jpg" alt="About Us Image" class="logo-img"> *@
+
+    </section>
+
+
+    
+
+
+    <script>
+        // Başlangıçta her iki bölümü de gizle
+        var aboutUsSection = document.getElementById("about-us");
+        var contactUsSection = document.getElementById("contact");
+        var imageSlider = document.getElementById("image-slider");
+        aboutUsSection.style.display = "none";
+        contactUsSection.style.display = "none";
+
+        var vehiclesTable = document.getElementById("vehiclesTable");
+
+
+        // "Otomobiller" bağlantısına tıklama olayını işle
+        document.getElementById("carsLink").addEventListener("click", function () {
+            // "Hakkımızda" ve "İletişim" bölümlerini gizle
+            aboutUsSection.style.display = "none";
+            contactUsSection.style.display = "none";
+            
+           
+        });
+
+        // "About Us" bölümünü göster
+        document.getElementById("showAboutUs").addEventListener("click", function () {
+            aboutUsSection.style.display = "block";
+            contactUsSection.style.display = "none";
+            // Diğer tüm elementleri gizle
+            // document.querySelector(".top-menu").style.display = "none";
+            document.querySelector(".top-menu1").style.display = "none";
+            imageSlider.style.display = "none";
+
+            vehiclesTable.style.display = "none";
+        });
+
+        // "Contact" bölümünü göster
+        document.getElementById("showContact").addEventListener("click", function () {
+            aboutUsSection.style.display = "none";
+            contactUsSection.style.display = "block";
+            // Diğer tüm elementleri gizle
+            // document.querySelector(".top-menu").style.display = "none";
+            document.querySelector(".top-menu1").style.display = "none";
+            imageSlider.style.display = "none";
+        });
+    </script>
+
+    
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

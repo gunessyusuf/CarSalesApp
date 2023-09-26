@@ -13,6 +13,7 @@
 	</p>
 }
 
+<div id="vehiclesTable">
 @if (Model is not null && Model.Count() > 0)
 {
 	string favoritesCount = Model.Count() == 1 ? "1 vehicle found." : Model.Count() + " vehicles found.";
@@ -26,6 +27,8 @@
 			<a asp-action="Create">Create New</a>
 		</p>
 	}
+
+	
 	<table class="table">
 		<thead>
 			<tr>
@@ -54,11 +57,13 @@
 				<th>
 					@Html.DisplayNameFor(model => model.SoldDisplay)
 				</th>        
+				@if (User.IsInRole("Admin"))
+				{
 
-				<th>
-					@Html.DisplayNameFor(model => model.CustomerDisplay)
+					<th>
+						@Html.DisplayNameFor(model => model.CustomerDisplay)
 				</th>
-
+				}
 				<th></th>
 			</tr>
 		</thead>
@@ -99,12 +104,14 @@
 						@Html.DisplayFor(modelItem => item.SoldDisplay)
 					</td>
 
-
-					<td>
-						@Html.DisplayFor(modelItem => item.CustomerDisplay)
+					@if (User.IsInRole("Admin"))
+					{
+						<td>
+							@Html.DisplayFor(modelItem => item.CustomerDisplay)
 					</td>
+					}
 					<td>
-
+					
 						<a asp-action="AddToFavorites" asp-controller="Favorites" asp-route-vehicleId="@item.Id">Add to Favorites</a> &nbsp;|&nbsp;
 						<a asp-action="Details" asp-route-id="@item.Id">Details</a>&nbsp;|&nbsp;
 
@@ -120,7 +127,8 @@
 			}
 		</tbody>
 	</table>
+	
 }
-
+</div>
 
 

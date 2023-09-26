@@ -20,9 +20,9 @@ namespace Business.Models
         public int RoleId { get; set; }
         
 
-        public int UserDetailId { get; set; }
+        public int? UserDetailId { get; set; }
 
-        public UserDetail UserDetail { get; set; }
+        public UserDetailModel UserDetail { get; set; }
 
         public RoleModel Role { get; set; }
 

@@ -9,12 +9,12 @@ namespace Business.Models
 {
 	public class VehicleModel : RecordBase
     {
-        [Range(0, double.MaxValue)]
-
+		[Range(100000, 1000000000, ErrorMessage = "{0} must be between {1} and {2}!")]
 		public double Price { get; set; }
 
 
-        	
+
+		[Range(1980, 2023, ErrorMessage = "{0} must be between {1} and {2}!")]
 		public int Year { get; set; }
 
         public string Description { get; set; }
@@ -22,14 +22,17 @@ namespace Business.Models
         
         public bool IsSold { get; set; }
 
+		
+		public int BrandId { get; set; }
 
-        public int BrandId { get; set; }
+		
+		public Brand Brand { get; set; }
 
-        public Brand Brand { get; set; }
+		
+		public int ColorId { get; set; }
 
-        public int ColorId { get; set; }
-
-        public Color Color { get; set; }
+		
+		public Color Color { get; set; }
 
 		
 		public int ModelId { get; set; }
@@ -45,6 +48,8 @@ namespace Business.Models
         [DisplayName("Customer")]
         public string CustomerDisplay { get; set; }
 
+		
+		
 		[NotMapped]
 		
 		[DisplayName("Price")]
@@ -64,7 +69,7 @@ namespace Business.Models
 		[StringLength(5)]
 		public string ImageExtension { get; set; }
 
-		[DisplayName("Image")]
+		[DisplayName("")]
 		public string ImgSrcDisplay { get; set; }
 		#endregion
 

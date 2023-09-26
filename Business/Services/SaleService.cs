@@ -39,6 +39,7 @@ namespace Business.Services
                     on v.ColorId equals c.Id
                     join cs in customerQuery
                     on v.CustomerId equals cs.Id
+                    where v.IsSold
                     orderby v.Customer.Name descending 
                     orderby v.Customer.Surname descending
                     
@@ -47,7 +48,7 @@ namespace Business.Services
                         VehicleBrand = b.Name,
                         VehicleModel = m.Name,
                         VehicleColor = c.Name,
-                        VehiclePrice = v.Price.ToString("C2", new CultureInfo("en-US")),
+                        VehiclePrice = v.Price,
                         VehicleYear = v.Year,
                         Customer = v.Customer.Name + " " + v.Customer.Surname,
                         IsSold = v.IsSold ? "Yes" : "No"

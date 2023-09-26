@@ -56,8 +56,11 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 var result = _brandService.Add(brand);
-                if(result.IsSuccessful)
-                return RedirectToAction(nameof(Index));
+                if (result.IsSuccessful)
+                {
+                    TempData["Message"] = result.Message;
+                    return RedirectToAction(nameof(Index));
+                }
                 ModelState.AddModelError("", result.Message);
             }
             // Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
@@ -77,8 +80,7 @@ namespace MVC.Controllers
         }
 
         // POST: Brands/Edit
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(BrandModel brand)
@@ -86,12 +88,13 @@ namespace MVC.Controllers
             if (ModelState.IsValid)
             {
                 var result = _brandService.Update(brand);
-                if (result.IsSuccessful)
-                {
-                    return RedirectToAction(nameof(Index));
-                }
-                ModelState.AddModelError("", result.Message);
-            }
+				if (result.IsSuccessful)
+				{
+					TempData["Message"] = result.Message;
+					return RedirectToAction(nameof(Index));
+				}
+				ModelState.AddModelError("", result.Message);
+			}
             // Add get related items service logic here to set ViewData if necessary and update null parameter in SelectList with these items
             return View(brand);
         }

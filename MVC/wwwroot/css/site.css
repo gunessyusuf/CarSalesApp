@@ -1,22 +1,143 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.text-danger {
+    color: red;
+}
+
+
+
+
+/*Benim eklediklerim*/
+.top-menu {
+    
+    background-color: #396; /* Arka plan rengi */
+    color: white; /* Yazý rengi */
+    padding: 30px 0; /* Dolgularý ayarlar */
+   
+}
+.right-menu {
+    position: absolute;
+    top: auto;
+    right: 0;
+    
+}
+
+    .top-menu a {
+        color: white; /* Üst menüdeki baðlantýlarýn yazý rengi */
+        margin-right: 20px; /* Baðlantýlar arasýnda boþluk */
+    }
+
+        .top-menu a:hover {
+            text-decoration: none; /* Üzerine gelindiðinde baðlantý altý çizgisini kaldýrýr */
+        }
+
+/* Ana Ýçerik Bölümü Stili */
+.main-content {
+    padding: 20px; /* Ana içerik bölümünün dolgusu */
+}
+
+
+
+
+
+.top-menu a {
+    color: white; /* Üst menüdeki baðlantýlarýn yazý rengi */
+    margin-right: 20px; /* Baðlantýlar arasýnda boþluk */
+}
+
+    .top-menu a i.fas.fa-phone {
+        color: #007bff; /* Telefon simgesinin rengi */
+        font-size: 18px; /* Telefon simgesinin boyutu */
+        margin-right: 5px; /* Telefon simgesi ile metin arasýndaki boþluk */
+    }
+
+
+.background-image {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: -1; 
+    opacity: 0.7; 
+}
+
+.top-menu1 {
+    background-color: white; /* Arka plan rengi */
+    color: blue; /* Yazý rengi */
+    padding: 50px 0; /* Dolgularý ayarlar */
+}
+
+.right-menu1 {
+    position: absolute;
+    top: auto;
+   
+}
+
+.top-menu1 a {
+    color: white; /* Üst menüdeki baðlantýlarýn yazý rengi */
+    margin-right: 30px; /* Baðlantýlar arasýnda boþluk */
+}
+
+    .top-menu1 a:hover {
+        text-decoration: none; /* Üzerine gelindiðinde baðlantý altý çizgisini kaldýrýr */
+    }
+
+
+.logo-img {
+    float: initial; /* Resmi saða yasla */
+    margin-left: 0px; /* Resim ile metin arasýnda boþluk býrak */
+    max-height: 552px; /* Resmin maksimum yüksekliði */
+}
+
+.logo {
+    text-align: center; /* Ýçeriði yatay olarak ortala */
+}
+
+    .logo img {
+        width: 350px; /* Resim geniþliðini ayarlayabilirsiniz */
+        height: auto; /* Otomatik yükseklik */
+        display: block; /* Resmi blok olarak yerleþtirir (satýrýn ortasýna yerleþtirir) */
+        margin: 0 auto 10px; /* Resim ile metin arasýnda boþluk býrakýr */
+    }
+
+.autoPro-logo {
+    width: 90px; /* Resim geniþliðini ayarlayabilirsiniz */
+    height: auto; /* Otomatik yükseklik */
+}
+
+
+body {
+    background-image: url('Images/images.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+#about-us,
+#contact {
+    background-color: rgba(255, 255, 255, 0.9); /* Bölüm arka plan rengi */
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    display: none; /* Baþlangýçta gizli */
 }

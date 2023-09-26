@@ -4,6 +4,7 @@ using AppCore.Results;
 using AppCore.Results.Bases;
 using Business.Models;
 using DataAccess.Entities;
+using Microsoft.IdentityModel.Abstractions;
 using System.Globalization;
 using System.Security.Cryptography.Xml;
 
@@ -11,7 +12,7 @@ namespace Business.Services
 {
     public interface IVehicleService : IService<VehicleModel>
     {
-
+        
     }
 
     public class VehicleService : IVehicleService
@@ -25,34 +26,38 @@ namespace Business.Services
 
         public Result Add(VehicleModel model)
         {
-			//if (_vehicleRepo.Exists(v => v.Model.Name.ToLower() == model.Model.Name.ToLower() && v.Brand.Name.ToLower() == model.Brand.Name.ToLower().Trim()))
-			//{
-			//	return new ErrorResult("Vehicle is exists!");
-			//}
-			var entity = new Vehicle()
-			{
-				Id = model.Id,
-				Price = model.Price,
-				Brand = model.Brand,
-				BrandId = model.BrandId,
-				Color = model.Color,
-				ColorId = model.ColorId,
-				Year = model.Year,
-				Customer = model.Customer,
-				CustomerId = model.CustomerId,
-				Description = model.Description,
-				IsSold = model.IsSold,
-				Model = model.Model,
-				ModelId = model.ModelId,
+            if (_vehicleRepo.Exists(v => v.ModelId == model.ModelId && v.BrandId == model.BrandId && v.Year == model.Year && v.ColorId == model.ColorId))
 
-				Image = model.Image,
-				ImageExtension = model.ImageExtension
 
-			};           
+            {
+                return new ErrorResult("Vehicle is exists!");
+            }
+
+
+            var entity = new Vehicle()
+            {
+                Id = model.Id,
+                Price = model.Price,
+                Brand = model.Brand,
+                BrandId = model.BrandId,
+                Color = model.Color,
+                ColorId = model.ColorId,
+                Year = model.Year,
+                Customer = model.Customer,
+                CustomerId = model.CustomerId,
+                Description = model.Description,
+                IsSold = model.IsSold,
+                Model = model.Model,
+                ModelId = model.ModelId,
+
+                Image = model.Image,
+                ImageExtension = model.ImageExtension
+
+            };
 
             _vehicleRepo.Add(entity);
             return new SuccessResult("Vehicle Added Succeffully");
-		}
+        }
 
         public Result Delete(int id)
         {
@@ -70,48 +75,53 @@ namespace Business.Services
 
         public IQueryable<VehicleModel> Query()
         {
-           return _vehicleRepo.Query().OrderByDescending(v => v.Price).ThenBy(v => v.Year).Select(v => new VehicleModel
+            return _vehicleRepo.Query().OrderByDescending(v => v.Price).ThenBy(v => v.Year).Select(v => new VehicleModel
             {
-               Id = v.Id,
-               Price = v.Price,
-               Brand = v.Brand,
-               BrandId = v.BrandId,
-               Color = v.Color,
-               ColorId = v.ColorId,
-               Year = v.Year,
-               IsSold = v.IsSold,
-               Model = v.Model,
-               
-               CustomerDisplay = v.Customer.Name + " " + v.Customer.Surname,
+                Id = v.Id,
+                Price = v.Price,
+                Brand = v.Brand,
+                BrandId = v.BrandId,
+                Color = v.Color,
+                ColorId = v.ColorId,
+                Year = v.Year,
+                IsSold = v.IsSold,
+                ModelId = v.ModelId,
+                Model = v.Model,
+                CustomerId = v.CustomerId,
+                Customer = v.Customer,
 
-               PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US")),
+                CustomerDisplay = v.Customer.Name + " " + v.Customer.Surname,
 
-               SoldDisplay = v.IsSold ? "Yes" : "No",
+                PriceDisplay = v.Price.ToString("C2", new CultureInfo("en-US")),
 
-			   ImageExtension = v.ImageExtension,
+                SoldDisplay = v.IsSold ? "Yes" : "No",
 
-			   ImgSrcDisplay = v.Image != null ?
-					(
-						v.ImageExtension == ".jpg" || v.ImageExtension == ".jpeg" ?
-						"data:image/jpeg;base64,"
-						: "data:image/png;base64,"
-					) + Convert.ToBase64String(v.Image)
-					: null
+                ImageExtension = v.ImageExtension,
 
-		   });
+                ImgSrcDisplay = v.Image != null ?
+                     (
+                         v.ImageExtension == ".jpg" || v.ImageExtension == ".jpeg" ?
+                         "data:image/jpeg;base64,"
+                         : "data:image/png;base64,"
+                     ) + Convert.ToBase64String(v.Image)
+                     : null
 
-            
+            });
+
+
         }
+
+      
 
         public Result Update(VehicleModel model)
         {
-			//if (_vehicleRepo.Exists(v => v.Model.Name.ToLower() == model.Model.Name.ToLower() && v.Brand.Name.ToLower() == model.Brand.Name.ToLower().Trim() && v.Id != model.Id))
-			//{
-			//	return new ErrorResult("Vehicle is exists!");
-			//}
+            if (_vehicleRepo.Exists(v => v.ModelId == model.ModelId && v.BrandId == model.BrandId && v.Year == model.Year && v.ColorId == model.ColorId && v.Id != model.Id))
+            {
+                return new ErrorResult("Same vehicle exists!");
+            }
 
-			var entity = _vehicleRepo.Query().SingleOrDefault(b => b.Id == model.Id);
-            
+            var entity = _vehicleRepo.Query().SingleOrDefault(b => b.Id == model.Id);
+
 
             entity.Price = model.Price;
             entity.Brand = model.Brand;
@@ -125,14 +135,14 @@ namespace Business.Services
             entity.IsSold = model.IsSold;
             entity.Model = model.Model;
             entity.ModelId = model.ModelId;
-            
 
-			if (model.Image is not null)
-			{
-				entity.Image = model.Image;
-				entity.ImageExtension = model.ImageExtension;
-			}
-			_vehicleRepo.Update(entity);
+
+            if (model.Image is not null)
+            {
+                entity.Image = model.Image;
+                entity.ImageExtension = model.ImageExtension;
+            }
+            _vehicleRepo.Update(entity);
 
             return new SuccessResult("Vehicle Updated Successfully!");
         }

@@ -2,16 +2,17 @@
 using AppCore.Records.Bases;
 using DataAccess.Entities;
 using DataAccess.Enums;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Business.Models
 {
-    public class UserDetailModel : RecordBase
+    public class UserDetailModel 
     {
         [Key]
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        //public User User { get; set; }
 
 
         public Sex Sex { get; set; }
@@ -27,12 +28,23 @@ namespace Business.Models
         [StringLength(750)]
         public string Address { get; set; }
 
-        public int CountryId { get; set; }
+        [DisplayName("Country")]
+        public int? CountryId { get; set; }
 
-        public Country Country { get; set; }
+       
 
-        public int CityId { get; set; }
+        [DisplayName("City")]
+        public int? CityId { get; set; }
 
-        public City City { get; set; }
+        
+
+
+        #region Entity Referans Özelliklerine Karşılık Kullanacağımız Özellikler
+        public CountryModel Country { get; set; }
+
+
+
+        public CityModel City { get; set; }
+        #endregion
     }
 }

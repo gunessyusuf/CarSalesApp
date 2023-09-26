@@ -8,7 +8,7 @@ namespace Business.Models
 	public class ModelModel : RecordBase
 	{
 		[Required]
-		[StringLength(150)]
+		[StringLength(500)]
 		public string Name { get; set; }
 
         public int BrandId { get; set; }

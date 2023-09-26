@@ -17,12 +17,16 @@ namespace MVC.Areas.Account.Controllers
     {
         // Add service injections here
         private readonly IAccountService _accountService;
+        private readonly ICountryService _countryService;
+        private readonly ICityService _cityService;
 
-        public UsersController(IAccountService accountService)
+        public UsersController(IAccountService accountService, ICountryService countryService, ICityService cityService)
         {
             _accountService = accountService;
+            _countryService = countryService;
+            _cityService = cityService;
         }
-       
+
 
         // GET: Account/Users/Login
         public IActionResult Login(string returnUrl)
@@ -84,7 +88,8 @@ namespace MVC.Areas.Account.Controllers
 
 		public IActionResult Register()
 		{
-			return View();
+            ViewBag.Countries = new SelectList(_countryService.GetList(), "Id", "Name");
+            return View();
 		}
 
 		[HttpPost]
@@ -95,10 +100,15 @@ namespace MVC.Areas.Account.Controllers
 			{
 				Result result = _accountService.Register(model);
 				if (result.IsSuccessful)
-					return RedirectToAction(nameof(Login));
-				ModelState.AddModelError("", result.Message);
+                    return RedirectToAction(nameof(Login));
+
+                ModelState.AddModelError("", result.Message);
 			}
-			return View(model);
+            ViewBag.Countries = new SelectList(_countryService.GetList(), "Id", "Name", model.UserDetail.CountryId);
+            
+
+            ViewBag.Cities = new SelectList(_cityService.GetList(model.UserDetail.CountryId ?? 0), "Id", "Name", model.UserDetail.CityId);
+            return View(model);
 		}
 
 	}

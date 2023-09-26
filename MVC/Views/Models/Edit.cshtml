@@ -10,20 +10,21 @@
 
 
 <hr />
+<span class="text-danger"><h4>Please fill all required fields marked with *</h4></span>
 <div class="row">
     <div class="col-12">
         <form asp-action="Edit">
 		@Html.AntiForgeryToken()
-            <div asp-validation-summary="All" class="text-danger"></div>
+			<div asp-validation-summary="All" class="text-danger"></div>
             <div class="row mb-3">
-                <label asp-for="Name" class="col-2 col-form-label"></label>
+				<label asp-for="Name" class="col-2 col-form-label">Name<span class="text-danger"> *</span></label>
 				<div class="col-5">
 					<input asp-for="Name" class="form-control" />
 					<span asp-validation-for="Name" class="text-danger"></span>
 				</div>
             </div>
             <div class="row mb-3">
-                <label asp-for="Brand" class="col-2 col-form-label"></label>
+				<label asp-for="Brand" class="col-2 col-form-label ">Brand<span class="text-danger"> *</span></label>
 				<div class="col-5">
 					<select asp-for="BrandId" class="form-select" asp-items="ViewBag.BrandId">
 						<option value="">-- Select --</option>

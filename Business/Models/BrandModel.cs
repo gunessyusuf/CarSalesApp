@@ -13,15 +13,17 @@ namespace Business.Models
 		[StringLength(150)]
 		public string Name { get; set; }
 
-		//public List<Model> Models { get; set; }
+		public List<Model> Models { get; set; }
 
-		//public List<Vehicle> Vehicles { get; set; }
+		public List<Vehicle> Vehicles { get; set; }
 
 
-        [NotMapped]
+		[NotMapped]
 		[DisplayName("Models")]
         public string ModelsDisplay { get; set; }
 
-		
-	}
+		[NotMapped]
+		[DisplayName("Model Count")]
+        public int ModelsCount { get; set; }
+    }
 }

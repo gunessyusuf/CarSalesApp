@@ -26,6 +26,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<ISaleService, SaleService>();
+builder.Services.AddScoped<ICityService, CityService>();
+builder.Services.AddScoped<ICountryService, CountryService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -66,7 +69,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    
     app.UseHsts();
 }
 
@@ -86,7 +89,7 @@ app.UseSession();
 #endregion
 
 #region AppSettings
-//var section = builder.Configuration.GetSection("AppSettings");
+
 var section = builder.Configuration.GetSection(nameof(AppSettings));
 section.Bind(new AppSettings());
 # endregion

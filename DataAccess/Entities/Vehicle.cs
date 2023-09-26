@@ -19,15 +19,18 @@ namespace DataAccess.Entities
 
         public bool IsSold { get; set; }
 
-        public int BrandId { get; set; }
+		[Required]
+		public int BrandId { get; set; }
 
 		public Brand Brand { get; set; }
 
-        public int ColorId { get; set; }
+		[Required]
+		public int ColorId { get; set; }
 
         public Color Color { get; set; }
 
-        public int ModelId { get; set; }
+		[Required]
+		public int ModelId { get; set; }
 
 		public Model Model { get; set; }
 

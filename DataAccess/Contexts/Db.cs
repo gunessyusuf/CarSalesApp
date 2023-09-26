@@ -17,6 +17,11 @@ namespace DataAccess.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+       
+
+
+
+
 
         
 

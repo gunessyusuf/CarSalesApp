@@ -30,5 +30,7 @@ namespace Business.Models
 		[NotMapped]
 		[DisplayName("Customer")]
 		public string CustomerDisplay { get; set; }
-	}
+
+        
+    }
 }
