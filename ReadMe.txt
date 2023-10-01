@@ -30,8 +30,7 @@ Tools -> NuGet Package Manager -> Package Manager Console açılır, Default pro
 
 View <-> Controller (Action) <-> Service (Model) <-> Repository (Entity) <-> DbContext (Entity) <-> Database
 
-11) Mvc katmanındaki Views -> Shared klasörü altındaki projede tüm oluşturulan view'ların bir şablon içerisinde gösterilmesini
-sağlayan _Layout1.cshtml view'ı içerisinde controller ve action'lar üzerinden, örneğin menüye link'ler eklenir.
+11) Mvc katmanındaki Views -> Shared klasörü altındaki projede tüm oluşturulan view'ların bir şablon içerisinde gösterilmesini sağlayan _Layout1.cshtml view'ı içerisinde controller ve action'lar üzerinden, örneğin menüye link'ler eklenir.
 
 12) Eğer istenirse veritabanındaki tüm verilerin sıfırdan oluşturulmasını sağlayan, örneğin Mvc katmanında Areas klasöründeki Database area'sı içerisinde, bir controller ve aksiyonu yazılabilir.
 
