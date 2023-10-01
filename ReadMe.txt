@@ -19,15 +19,11 @@ ve NuGet üzerinden Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation kütüphan
 Tools -> NuGet Package Manager -> Package Manager Console açılır, Default project DataAccess seçilir ve önce örneğin add-migration v1 daha sonra update-database komutları çalıştırılır. Entity'ler veya DbSet'ler üzerinde yapılan her değişiklik için örneğin add-migration v2 daha sonra da update-database çalıştırılmalıdır.
 
 
-7) DataAccess katmanında entity'ler üzerinden AppCore'daki RepoBase'den miras alan concrete (somut) repository (Repo) oluşturulur 
-ve Mvc katmanında Program.cs'teki IoC Container'da bağımlılığı yönetilir.
+7) DataAccess katmanında entity'ler üzerinden AppCore'daki RepoBase'den miras alan concrete (somut) repository (Repo) oluşturulur ve Mvc katmanında Program.cs'teki IoC Container'da bağımlılığı yönetilir.
 
-8) Business katmanında entity'ler üzerinden model class'ları AppCore katmanındaki RecordBase'dan miras alacak şekilde oluşturulur,
-eğer istenirse Mvc katmanında view'larda kullanılmak üzere formatlama, ilişkili referans özellikleri kullanma, vb. için yeni özellikler eklenebilir.
+8) Business katmanında entity'ler üzerinden model class'ları AppCore katmanındaki RecordBase'dan miras alacak şekilde oluşturulur, eğer istenirse Mvc katmanında view'larda kullanılmak üzere formatlama, ilişkili referans özellikleri kullanma, vb. için yeni özellikler eklenebilir.
 
-9) Business katmanında model'ler üzerinden entity <-> model dönüşümlerini gerçekleştirip DataAccess katmanındaki Repo üzerinden
-veritabanı işlemleri gerçekleştirmek için AppCore'daki IService'i implemente eden interface'ler ile bu interface'leri implemente
-eden concrete (somut) service'ler oluşturulur ve Mvc katmanında Program.cs'teki IoC Container'da bağımlılıkları yönetilir.
+9) Business katmanında model'ler üzerinden entity <-> model dönüşümlerini gerçekleştirip DataAccess katmanındaki Repo üzerinden veritabanı işlemleri gerçekleştirmek için AppCore'daki IService'i implemente eden interface'ler ile bu interface'leri implemente eden concrete (somut) service'ler oluşturulur ve Mvc katmanında Program.cs'teki IoC Container'da bağımlılıkları yönetilir.
 
 
 10) Mvc katmanında yönetilecek model için controller ile ilgili action ve view'ları oluşturularak ilgili service constructor üzerinden enjekte edilir ve controller action'larında methodları kullanılarak model objeleri üzerinden işlemler (örneğin CRUD) gerçekleştirilir.
